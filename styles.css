@@ -20,94 +20,15 @@ body > div{
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.beautiful-input{
-    width: 500px;
-    border: 2px solid #c5c5c5;
-    background-color: white;
-    color: #3a3a3a;
-    padding: 5px;
-    border-radius: 5px;
-    transition: 0.2s;
     display: grid;
-    cursor: pointer;
+    gap: 10px;
+    grid-template-columns: repeat(7, 1fr);
+    padding: 10px;
+    justify-items: stretch;
 }
 
-.beautiful-input.active{
-    border-color: #57bbfd;
-    color: #000000;
-    -webkit-box-shadow: 0px 0px 5px 1px rgba(120,203,255,0.75);
-    -moz-box-shadow: 0px 0px 5px 1px rgba(120,203,255,0.75);
-    box-shadow: 0px 0px 5px 1px rgba(120,203,255,0.75);
-    cursor: text;
+pretty-text-input{
+    width: 100%;
+    grid-column: 1 / 8;
 }
 
-.beautiful-input.valid{
-    border-color: #008000;
-    color: #000000;
-    grid-template-columns: auto 16px;
-    gap: 5px;
-    cursor: text;
-    -webkit-box-shadow: unset;
-    -moz-box-shadow: unset;
-    box-shadow: unset;
-}
-
-.beautiful-input.invalid{
-    border-color: #c60000;
-    color: #000000;
-    grid-template-columns: auto 16px;
-    gap: 5px;
-    cursor: text;
-}
-
-.beautiful-input.disabled{
-    background-color: #f7f7f7;
-    color: #3a3a3a;
-    pointer-events: none;
-    cursor: not-allowed;
-}
-
-.beautiful-input > label{
-    all: unset;
-    color: inherit;
-    position: absolute;
-    transition: 0.2s;
-}
-
-.beautiful-input.active > label{
-    font-size: 0.7rem;
-    margin-top: calc(-1rem);
-    background-color: white;
-    padding: 0 3px;
-}
-
-.beautiful-input > input{
-    all: unset;
-    color: inherit;
-}
-
-.beautiful-input > input:not(:placeholder-shown) + label{
-    font-size: 0.7rem;
-    margin-top: calc(-1rem);
-    background-color: white;
-    padding: 0 3px;
-}
-
-.beautiful-input > .status{
-    background-color: inherit;
-    width: max-content;
-}
-
-.beautiful-input > .status > i{
-    display: none;
-}
-
-.beautiful-input.valid > .status > .fa-circle-check{
-    display: unset;
-}
-
-.beautiful-input.invalid > .status > .fa-circle-xmark{
-    display: unset;
-}
