@@ -11,7 +11,7 @@ body{
 
 body > div{
     width: 75%;
-    height: 50%;
+    min-height: 50%;
     background-color: white;
     border-radius: 50px;
     background: #ffffff;
@@ -21,14 +21,29 @@ body > div{
     justify-content: center;
     align-items: center;
     display: grid;
-    gap: 10px;
-    grid-template-columns: repeat(7, 1fr);
-    padding: 10px;
+    gap: 20px;
+    grid-template-columns: repeat(8, 1fr);
+    padding: 20px;
     justify-items: stretch;
+    align-content: center;
 }
 
-pretty-text-input{
-    width: 100%;
-    grid-column: 1 / 8;
+pretty-input{
+    grid-column: 1 / 9;
 }
 
+pretty-select, pretty-text-area{
+    grid-column: 1 / 9;
+}
+
+pretty-button:first-of-type{
+    grid-column: 2 / 8;
+}
+
+pretty-button:last-of-type{
+    grid-column: 2 / 8;
+}
+
+pretty-switch{
+    grid-column: 1 / 9;
+}

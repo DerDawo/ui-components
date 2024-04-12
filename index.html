@@ -11,7 +11,41 @@
 </head>
 <body>
     <div>
-        <pretty-text-input name="Name" pattern="[A-z]"></pretty-text-input>
+        <pretty-input name="Global IP-Adress of the Printer" pattern="https://([0-9]+([A-Za-z]+[0-9]+)+)\.diode\.link/"></pretty-input>
+        <pretty-input name="Name of your Printer" pattern=""></pretty-input>
+        <pretty-input name="E-Mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"></pretty-input>
+        <pretty-select name="Select a Printer">
+            <select>
+                <option value="1">MiiCraft Alpha</option>
+                <option value="2">MiiCraft Alpha 2K</option>
+                <option value="3">MiiCraft Alpha 4K</option>
+                <option value="4">MiiCraft Prime</option>
+                <option value="5">MiiCraft Prime Plus</option>
+                <option value="6">MiiCraft Plus</option>
+                <option value="7">MiiCraft Profession</option>
+                <option value="8">MiiCraft Advance</option>
+                <option value="9">MiiCraft Hyper</option>
+                <option value="10">MiiCraft Ultra</option>
+            </select>
+        </pretty-select>
+        <pretty-select name="Select a Material">
+            <select>
+                <option value="1">MiiCraft BV007</option>
+                <option value="2">MiiCraft BV011</option>
+                <option value="3">Merz Dental Tray</option>
+                <option value="4">Merz Dental Proto</option>
+                <option value="5">Merz Dental Model</option>
+                <option value="6">Merz Dental Cast</option>
+                <option value="7">BASF RG 1100</option>
+                <option value="8">BASF RG 35</option>
+                <option value="9">BASF ST 45</option>
+                <option value="10">Okamoto Model L2</option>
+            </select>
+        </pretty-select>
+        <pretty-text-area name=" Enter additional Information here"></pretty-text-area>
+        <pretty-button>Abort Task</pretty-button>
+        <pretty-button type="primary">Pair a Printer</pretty-button>
+        <pretty-switch>Ich bin mit den AGB und der DSGVO einverstanden.</pretty-switch>
     </div>
     
 </body>
