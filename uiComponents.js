@@ -316,6 +316,29 @@ class PrettySwitch extends HTMLElement {
         const shadow = this.attachShadow({ mode: "open" });
         const parent = this;
 
+
+        function noAttributeSet(attributeSelection) {
+            let str = attributeSelection;
+            if (typeof str === "string" && str.length === 0) {
+                return true
+            } else if (str === null) {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        // Set a standard Font-Size
+        const _fontSize = this.getAttribute("font-size")
+        const fontSize = noAttributeSet(_fontSize) == true ? "16px" : _fontSize
+        this._fontSize = fontSize
+
+        // Set a standard Font-Family
+        const _fontFamily = this.getAttribute("font-family")
+        const fontFamily = noAttributeSet(_fontFamily) == true ? `"Roboto Condensed", sans-serif` : _fontFamily
+        this._fontFamily = fontFamily
+
+
         const wrapper = document.createElement("div");
         wrapper.setAttribute("class", "toggle-switch");
         this._wrapper = wrapper;
@@ -336,6 +359,7 @@ class PrettySwitch extends HTMLElement {
         
         const content = document.createElement("label");
         content.setAttribute("class", "content-label")
+        content.setAttribute("for", id);
         const contentText = this.innerHTML
         content.innerText = contentText
         this._content = content;
@@ -343,12 +367,16 @@ class PrettySwitch extends HTMLElement {
         // Create some CSS to apply to the shadow dom
         const style = document.createElement("style");
         style.textContent = `
+            @import url('https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,700;1,900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
             .toggle-switch {
-                position: relative;
+                --standard-font-size: ${this._fontSize};
+                font-family: ${this._fontFamily};
                 display: flex;
                 flex-direction: row;
                 align-items: center;
                 gap: 10px;
+                font-size: var(--standard-font-size);
             }
 
             .toggle-switch.disabled{
@@ -363,10 +391,10 @@ class PrettySwitch extends HTMLElement {
             .toggle-switch .toggle-label {
                 top: 0;
                 left: 0;
-                width: 1.83em;
-                height: 1em;
+                width: 2.5em;
+                height: 1.5em;
                 background-color: #c5c5c5;
-                border-radius: 1.4167em;
+                border-radius: 2.125em;
                 cursor: pointer;
                 transition: 0.2s;
             }
@@ -379,14 +407,15 @@ class PrettySwitch extends HTMLElement {
                 box-shadow: 0px 0px 5px 1px rgba(120,203,255,0.75);
             }
             
-            .toggle-switch .toggle-label::before {
+            .toggle-switch .toggle-label::after {
                 content: "";
-                position: absolute;
-                width: 0.83em;
-                height: 0.83em;
+                position: relative;
+                display: block;
+                width: 1.25em;
+                height: 1.25em;
                 border-radius: 50%;
-                top: 0.17em;
-                left: 0.083em;
+                top: 0.125em;
+                left: 0.125em;
                 background-color: #fff;
                 box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
                 transition: transform 0.2s;
@@ -396,34 +425,16 @@ class PrettySwitch extends HTMLElement {
                 background-color: #2196F3;
             }
             
-            .toggle-switch .toggle-input:checked + .toggle-label::before {
-                transform: translateX(0.83em);
+            .toggle-switch .toggle-input:checked + .toggle-label::after {
+                transform: translateX(1em);
             }
-            
-            /* Light tema */
-            .toggle-switch.light .toggle-label {
-                background-color: #BEBEBE;
-            }
-            
-            .toggle-switch.light .toggle-input:checked + .toggle-label {
-                background-color: #9B9B9B;
-            }
-            
-            .toggle-switch.light .toggle-input:checked + .toggle-label::before {
-                transform: translateX(6px);
-            }
-            
-            /* Dark tema */
-            .toggle-switch.dark .toggle-label {
-                background-color: #4B4B4B;
-            }
-            
-            .toggle-switch.dark .toggle-input:checked + .toggle-label {
-                background-color: #717171;
-            }
-            
-            .toggle-switch.dark .toggle-input:checked + .toggle-label::before {
-                transform: translateX(16px);
+
+            .content-label{
+                cursor: pointer;
+                -webkit-user-select: none; /* Safari */
+                -ms-user-select: none; /* IE 10 and IE 11 */
+                user-select: none; /* Standard syntax */
+
             }
         `;
 
