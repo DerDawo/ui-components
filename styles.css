@@ -44,6 +44,10 @@ pretty-button:last-of-type{
     grid-column: 2 / 8;
 }
 
+pretty-captcha{
+    grid-column: 2 / 8;
+}
+
 pretty-switch{
     grid-column: 1 / 9;
 }

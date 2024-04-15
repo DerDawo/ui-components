@@ -193,6 +193,7 @@ class PrettyInput extends HTMLElement {
                 all: unset;
                 color: inherit;
                 font-size: 1em;
+                width: 100%;
             }
             
             .beautiful-input > input:not(:placeholder-shown) + label{
@@ -222,6 +223,16 @@ class PrettyInput extends HTMLElement {
             
             .beautiful-input.invalid > .status > .fa-circle-xmark{
                 display: unset;
+            }
+
+            .beautiful-input > input::-webkit-outer-spin-button,
+            .beautiful-input > input::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+      
+            .beautiful-input > input {
+                -moz-appearance:textfield;
             }
         `;
 
@@ -266,6 +277,20 @@ class PrettyInput extends HTMLElement {
             }
         )
 
+    }
+
+    resetInputValue(){
+        this._input.value = ""
+        this.removeValidity()
+    }
+
+    updatePattern(newValue) {
+        // Collect the pattern-attrbute
+        const pattern = newValue
+        this._pattern = pattern;
+
+        // Create Input
+        this._input.setAttribute("pattern", this._pattern);        
     }
 
     setActive() {
@@ -356,7 +381,7 @@ class PrettySwitch extends HTMLElement {
         label.setAttribute("class", "toggle-label")
         label.setAttribute("for", id)
         this._label = label;
-        
+
         const content = document.createElement("label");
         content.setAttribute("class", "content-label")
         content.setAttribute("for", id);
@@ -589,7 +614,7 @@ class PrettySelect extends HTMLElement {
             "click",
             function (event) {
                 if (parent !== event.target) return
-                
+
                 if (parent.contains(event.target)) {
                     parent.toggle()
                     closeAllSelect(parent)
@@ -1002,8 +1027,8 @@ class PrettyButton extends HTMLElement {
         const _fontSize = this.getAttribute("font-size")
         const fontSize = noAttributeSet(_fontSize) == true ? "16px" : _fontSize
         this._fontSize = fontSize
-        
-        // Set a standard Font-Size
+
+        // Set a standard Button Type
         const _type = this.getAttribute("type")
         const type = noAttributeSet(_type) == true ? "secondary" : _type
         this._type = type
@@ -1024,7 +1049,7 @@ class PrettyButton extends HTMLElement {
 
         // Create Input
         const button = document.createElement("button");
-        this._button= button;
+        this._button = button;
 
         // Create Label
         const label = document.createElement("label");
@@ -1114,3 +1139,181 @@ class PrettyButton extends HTMLElement {
     }
 }
 customElements.define("pretty-button", PrettyButton);
+
+class PrettyCaptcha extends HTMLElement {
+    constructor() {
+        super();
+    }
+
+    connectedCallback() {
+        const simpleCaptcha = this;
+        // Create a shadow root
+        const shadow = this.attachShadow({ mode: "open" });
+
+        function noAttributeSet(attributeSelection) {
+            let str = attributeSelection;
+            if (typeof str === "string" && str.length === 0) {
+                return true
+            } else if (str === null) {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        // Set a standard Font-Size
+        const _fontSize = this.getAttribute("font-size")
+        const fontSize = noAttributeSet(_fontSize) == true ? "16px" : _fontSize
+        this._fontSize = fontSize
+
+        // Set a standard Font-Family
+        const _fontFamily = this.getAttribute("font-family")
+        const fontFamily = noAttributeSet(_fontFamily) == true ? `"Roboto Condensed", sans-serif` : _fontFamily
+        this._fontFamily = fontFamily
+
+        // Create a Wrapper div
+        const wrapper = document.createElement("div");
+        wrapper.setAttribute("class","wrapper")
+
+        // Create the Calculation, which you ask to check for
+        const numbers = "0123456789";
+        const operations = ["+", "&#10006;","-"];
+        
+        // Get the First and Second element of the calculation
+        let first = Number(
+            numbers.charAt(Math.floor(Math.random() * numbers.length))
+        );
+        let second = Number(
+            numbers.charAt(Math.floor(Math.random() * numbers.length))
+        );
+        
+        // Get the operation of the calculation
+        let operation = operations[Math.floor(Math.random() * operations.length)];
+        
+        // Compute the result
+        let result = 0;
+        if (operation == "+") {
+            result = first + second;
+        }
+        if (operation == "&#10006;") {
+            result = first * second;
+        }
+        if (operation == "-") {
+            result = first - second;
+        }
+        
+        // Set the Standard Captcha-Text
+        const captchaText = this.innerHTML.length == 0 ? "Solve the equation to prove you're human." : this.innerHTML;
+        // Create a Label
+        const label_info = document.createElement("label");
+        label_info.innerHTML = `${captchaText}`;
+
+        // Create the Calculation Label, which you ask to check for
+        let calculation = `${first} ${operation} ${second} = `;
+        const label_calculation = document.createElement("label");
+        label_calculation.innerHTML = `${calculation}`;
+
+        // Create a Input
+        const input = document.createElement("pretty-input");
+        input.setAttribute("font-size", this._fontSize);
+        input.setAttribute("id", "pretty-captcha");
+        input.setAttribute("name", " ");
+        input.setAttribute("type", "number");
+        input.setAttribute("min", "-999");
+        input.setAttribute("max", "-999");
+        input.setAttribute("pattern", result);
+        input.setAttribute("data-right", false);
+        input.addEventListener("input", checkDataResult);
+        input.addEventListener("change", checkDataResult);
+        function checkDataResult() {
+            if (this.value == this.getAttribute("pattern")) {
+                this.setAttribute("data-right", true);
+                simpleCaptcha.setAttribute("checked", true);
+            } else {
+                this.setAttribute("data-right", false);
+                simpleCaptcha.setAttribute("checked", false);
+            }
+        }
+
+        // Create a Reset Button
+        const button = document.createElement("pretty-button");
+        button.innerHTML = "&#8635;"
+        button.setAttribute("font-size",this._fontSize)
+        button.addEventListener("click",regenerateEquation)
+
+        function regenerateEquation(){
+            // Get the First and Second element of the calculation
+            let first = Number( numbers.charAt(Math.floor(Math.random() * numbers.length)) );
+            let second = Number( numbers.charAt(Math.floor(Math.random() * numbers.length)) );
+
+            // Get the operation of the calculation
+            let operation = operations[Math.floor(Math.random() * operations.length)];
+
+            // Compute the result
+            let result = 0;
+            if (operation == "+") { result = first + second; }
+            if (operation == "-") { result = first - second; }
+            if (operation == "&#10006;") { result = first * second; }
+
+            // Create the Calculation Label, which you ask to check for
+            let calculation = `${first} ${operation} ${second} = `;
+
+            input.setAttribute("type", "number");
+            input.setAttribute("min", "-999");
+            input.setAttribute("max", "-999");
+            input.setAttribute("pattern", result);
+            input.setAttribute("data-right", false);
+            input.updatePattern(result)
+            input.resetInputValue()
+
+            label_calculation.innerHTML = `${calculation}`;
+        }
+
+        const style = document.createElement("style");
+        style.textContent = ` 
+       
+        .wrapper{
+            --standard-font-size: ${this._fontSize};
+            font-family: ${this._fontFamily};
+            font-size: var(--standard-font-size);
+            display: grid;
+            gap: 5px;
+            grid-template-columns: 1fr 50px 1fr;
+            align-items: center;
+            justify-items: center;
+            justify-content: center;
+        }
+
+
+        label:first-of-type{
+            grid-column: 1 / 4;
+            text-align: center;
+        }
+
+        label:last-of-type{
+            text-align: end;
+            justify-self: end;
+            width: 50px;
+        }
+
+        #pretty-captcha{
+            width: 100%;
+        }
+        
+        pretty-button{
+            justify-self: start;
+            width: 35px;
+        }
+     
+        `;
+        this.innerHTML = "";
+        this.appendChild(shadow);
+        shadow.appendChild(style);
+        shadow.appendChild(wrapper);
+        wrapper.appendChild(label_info);
+        wrapper.appendChild(label_calculation);
+        wrapper.appendChild(input);
+        wrapper.appendChild(button);
+    }
+}
+customElements.define("pretty-captcha", PrettyCaptcha);

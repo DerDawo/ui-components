@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../uiComponents.js" defer></script>
+    <script src="../script.js" defer></script>
+    <link rel="stylesheet" href="../sign-up.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class>
+        <h1><img src="https://www.burms.de/cdn/shop/files/Logo_weiss_Hohe_Qualitaet_8k.png?v=1661779289&width=4000"></h1>
+    </div>
+    <div class="signup">
+        <h2>Sing Up</h2>
+        <pretty-input name="E-Mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"></pretty-input>
+        <pretty-input name="Name" pattern=""></pretty-input>
+        <pretty-input name="Surname" pattern=""></pretty-input>
+        <pretty-input name="Set a Password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$" type="password"></pretty-input>
+        <pretty-input name="Repeat your Password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$" type="password"></pretty-input>
+        <br>
+        <pretty-button type="primary">Sign Up</pretty-button>
+        <label>Already have an account? <a href="../login">Log in here.</a></label>
+    </div>
+    
+</body>
+</html>
