@@ -24,7 +24,7 @@
         <a><i class="fa-solid fa-circle-info"></i>Support</a>
     </nav>
     <main>
-        <section class="heading">Start</section>
+        <section class="heading">Print On The Cloud - Dashboard</section>
         <section class="body dashboard">
             <div class="modells-dashboard dashboard-item">
                 <h3>Modelle</h3>
@@ -96,17 +96,231 @@
                 <h3>Drucker</h3>
                 <a>Mehr <i class="fa-solid fa-caret-right"></i></a>
                 <div class="printers-dashboard-container dashboard-container">
-
+                    <div class="single-printer">
+                        <span>MiiCraft Prime Materialentwicklung</span>
+                        <img src="../src/images/printer1.png">
+                        <div>weitere Optionen</div>
+                    </div>
+                    <div class="single-printer">
+                        <span>MiiCraft Hyper</span>
+                        <img src="../src/images/printer2.png">
+                        <div>weitere Optionen</div>
+                    </div>
+                    <div class="single-printer">
+                        <span>MiiCraft Profession</span>
+                        <img src="../src/images/printer3.png">
+                        <div>weitere Optionen</div>
+                    </div>
+                    <div class="single-printer">
+                        <span>MiiCraft Alpha Labor</span>
+                        <img src="../src/images/printer4.png">
+                        <div>weitere Optionen</div>
+                    </div>
+                    <div class="single-printer">
+                        <span>MiiCraft Alpha Produktion 1</span>
+                        <img src="../src/images/printer4.png">
+                        <div>weitere Optionen</div>
+                    </div>
+                    <div class="single-printer">
+                        <span>MiiCraft Alpha Produktion 2</span>
+                        <img src="../src/images/printer4.png">
+                        <div>weitere Optionen</div>
+                    </div>
+                    <div class="single-printer">
+                        <div>Neuen Drucker hinzufügen</div>
+                        
+                    </div>
                 </div>
             </div>
             <div class="printjobs-dashboard dashboard-item">
-
+                <h3>Druckjobs</h3>
+                <a>Mehr <i class="fa-solid fa-caret-right"></i></a>
+                <div class="printjobs-dashboard-container dashboard-container">
+                    <div class="single-printjob single-printjob-header">
+                        <span class="number">Nummer</span>
+                        <span class="model">Modell</span>
+                        <span class="printer">Drucker</span>
+                        <span class="material">Material</span>
+                        <span class="configuration">Konfiguration</span>
+                        <span class="status">Status</span>
+                        <span class="option">Optionen</span>
+                    </div>
+                    <div class="single-printjob">
+                        <span class="number">1000153</span>
+                        <span class="model">Gaumenplatte.stl</span>
+                        <span class="printer">MiiCraft Alpha Labor</span>
+                        <span class="material">Merz Dental Model taupe-gray</span>
+                        <span class="configuration">50um</span>
+                        <span class="status">
+                            <pretty-progress progress="80" height="20"></pretty-progress>
+                            Im Druck
+                        </span>
+                        <div class="option"><i class="fa-solid fa-ellipsis"></i></div>
+                    </div>
+                    <div class="single-printjob">
+                        <span class="number">1000154</span>
+                        <span class="model">voronoi_cube.stl</span>
+                        <span class="printer">MiiCraft Alpha Produktion 2</span>
+                        <span class="material">BASF ST45 B</span>
+                        <span class="configuration">100um</span>
+                        <span class="status">
+                            <pretty-progress progress="50" height="20"></pretty-progress>
+                            Druckbereit
+                        </span>
+                        <div class="option"><i class="fa-solid fa-ellipsis"></i></div>
+                    </div>
+                    <div class="single-printjob">
+                        <span class="number">1000178</span>
+                        <span class="model">lawnchair.stl</span>
+                        <span class="printer">MiiCraft Alpha Produktion 1</span>
+                        <span class="material">BASF RG1100 B</span>
+                        <span class="configuration">50um</span>
+                        <span class="status">
+                            <pretty-progress progress="80" height="20"></pretty-progress>
+                            Im Druck
+                        </span>
+                        <div class="option"><i class="fa-solid fa-ellipsis"></i></div>
+                    </div>
+                    <div class="single-printjob">
+                        <span class="number">1000192</span>
+                        <span class="model">ethernet_verschluss.stl</span>
+                        <span class="printer">MiiCraft Alpha Prime</span>
+                        <span class="material">Okamoto Water-Washable White</span>
+                        <span class="configuration">100um</span>
+                        <span class="status">
+                            <pretty-progress progress="50" height="20"></pretty-progress>
+                            Druckbereit
+                        </span>
+                        <div class="option"><i class="fa-solid fa-ellipsis"></i></div>
+                    </div>
+                    <div class="single-printjob">
+                        <span class="number">1000215</span>
+                        <span class="model">chip.stl</span>
+                        <span class="printer">MiiCraft Profession</span>
+                        <span class="material">3DM Impact</span>
+                        <span class="configuration">100um</span>
+                        <span class="status">
+                            <pretty-progress progress="10" height="20"></pretty-progress>
+                            Wartet auf Datenvorbereitung
+                        </span>
+                        <div class="option"><i class="fa-solid fa-ellipsis"></i></div>
+                    </div>
+                    <div class="single-printjob">
+                        <span class="number">1000240</span>
+                        <span class="model">knopf.stl</span>
+                        <span class="printer">MiiCraft Profession</span>
+                        <span class="material">BASF ST45 B</span>
+                        <span class="configuration">50um</span>
+                        <span class="status">
+                            <pretty-progress progress="10" height="20"></pretty-progress>
+                            Wartet auf Datenvorbereitung
+                        </span>
+                        <div class="option"><i class="fa-solid fa-ellipsis"></i></div>
+                    </div>
+                    <div class="single-printjob">
+                        <span class="add-new-printjob">
+                            <i class="fa-solid fa-file-circle-plus"></i>
+                            Neuen Druckjob hinzufügen
+                        </span>
+                    </div>
+                </div>
             </div>
             <div class="status-dashboard dashboard-item">
+                <h3>Status</h3>
+                <a>Mehr <i class="fa-solid fa-caret-right"></i></a>
+                <div class="status-dashboard-container dashboard-container">
+                    <div class="single-status single-status-header">
+                        <div>Status</div>
+                        <span>Maschine</span>
+                        <span>Druckjobnummer</span>
+                        <span>Fortschritt<br>[Schichten]</span>
+                        <span>Verbleibende Zeit<br>[h:mm:ss]</span>
+                        <span>Optionen</span>
+                    </div>
+                    <div class="single-status">
+                        <div class="status printing"></div>
+                        <span>MiiCraft Alpha Labor</span>
+                        <span>1000153</span>
+                        <span>127 / 538</span>
+                        <span>1:29:23</span>
+                        <span class="option"><i class="fa-solid fa-ellipsis"></i></span>
+                    </div>
+                    <div class="single-status">
+                        <div class="status printing"></div>
+                        <span>MiiCraft Alpha Produktion 1</span>
+                        <span>1000178</span>
+                        <span>40 / 124</span>
+                        <span>0:22:35</span>
+                        <span class="option"><i class="fa-solid fa-ellipsis"></i></span>
+                    </div>
+                    <div class="single-status">
+                        <div class="status on"></div>
+                        <span>MiiCraft Prime Materialentwicklung</span>
+                        <span>-</span>
+                        <span>Verfügbar</span>
+                        <span>-</span>
+                        <span class="option"><i class="fa-solid fa-ellipsis"></i></span>
+                    </div>
+                    <div class="single-status">
+                        <div class="status on"></div>
+                        <span>MiiCraft Hyper</span>
+                        <span>-</span>
+                        <span>Verfügbar</span>
+                        <span>-</span>
+                        <span class="option"><i class="fa-solid fa-ellipsis"></i></span>
+                    </div>
+                    <div class="single-status">
+                        <div class="status off"></div>
+                        <span>MiiCraft Alpha Produktion 2</span>
+                        <span>-</span>
+                        <span>Ausgeschaltet</span>
+                        <span>-</span>
+                        <span class="option"><i class="fa-solid fa-ellipsis"></i></span>
+                    </div>
+                    <div class="single-status">
+                        <div class="status off"></div>
+                        <span>MiiCraft Profession</span>
+                        <span>-</span>
+                        <span>Ausgeschaltet</span>
+                        <span>-</span>
+                        <span class="option"><i class="fa-solid fa-ellipsis"></i></span>
+                    </div>
 
+                </div>
             </div>
             <div class="settings-dashboard dashboard-item">
-
+                <h3>Einstellungen</h3>
+                <a>Mehr <i class="fa-solid fa-caret-right"></i></a>
+                <div class="settings-dashboard-container dashboard-container">
+                    <div class="single-setting">
+                        <i class="fa-solid fa-cube"></i>
+                        <span>Modell Einstellungen</span>
+                    </div>
+                    <div class="single-setting">
+                        <i class="fa-solid fa-hammer"></i>
+                        <span>Drucker Einstellungen</span>
+                    </div>
+                    <div class="single-setting">
+                        <i class="fa-solid fa-gears"></i>
+                        <span>Druckjob Einstellungen</span>
+                    </div>
+                    <div class="single-setting">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        <span>Status Einstellungen</span>
+                    </div>
+                    <div class="single-setting">
+                        <i class="fa-solid fa-sliders"></i>
+                        <span>Account Einstellungen</span>
+                    </div>
+                    <div class="single-setting">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Support</span>
+                    </div>
+                    <div class="single-setting">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span>Abmelden</span>
+                    </div>
+                </div>
             </div>
 
         </section>

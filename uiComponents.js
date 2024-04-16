@@ -1317,3 +1317,103 @@ class PrettyCaptcha extends HTMLElement {
     }
 }
 customElements.define("pretty-captcha", PrettyCaptcha);
+
+class PrettyProgress extends HTMLElement {
+    constructor() {
+        super();
+    }
+
+    connectedCallback() {
+        const simpleCaptcha = this;
+        // Create a shadow root
+        const shadow = this.attachShadow({ mode: "open" });
+
+        function noAttributeSet(attributeSelection) {
+            let str = attributeSelection;
+            if (typeof str === "string" && str.length === 0) {
+                return true
+            } else if (str === null) {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        // Set a standard color
+        const _color = this.getAttribute("color")
+        const color = noAttributeSet(_color) == true ? "#ffffff" : _color
+        this._color = color
+
+        // Set a standard height
+        const _height = this.getAttribute("height")
+        const height = noAttributeSet(_height) == true ? "16" : _height
+        this._height = height
+
+        // Set a standard progress
+        const _progress = this.getAttribute("progress")
+        const progress = noAttributeSet(_progress) == true ? "0" : _progress
+        this._progress = progress
+
+        // Create a Wrapper div
+        const wrapper = document.createElement("div");
+        wrapper.setAttribute("class","wrapper")
+
+        // Create a SVG
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width",this._height)
+        svg.setAttribute("height",this._height)
+        svg.setAttribute("viewBox",`0 0 ${this._height} ${this._height}`)
+        svg.setAttribute("class","circular-progress")
+        svg.setAttribute("style",`--progress: ${this._progress}`)
+        this._svg = svg;
+
+        // Create a Circle
+        const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        circle.setAttribute("class","fg")
+
+        const style = document.createElement("style");
+        style.textContent = ` 
+       
+        .circular-progress {
+            --size: ${this._height}px;
+            --half-size: calc(var(--size) / 2);
+            --stroke-width: 3px;
+            --radius: calc((var(--size) - var(--stroke-width)) / 2);
+            --circumference: calc(var(--radius) * pi * 2);
+            --dash: calc((var(--progress) * var(--circumference)) / 100);
+          }
+          
+          .circular-progress circle {
+            cx: var(--half-size);
+            cy: var(--half-size);
+            r: var(--radius);
+            stroke-width: var(--stroke-width);
+            fill: none;
+            stroke-linecap: round;
+          }
+          
+          .circular-progress > .fg {
+            transform: rotate(-90deg);
+            transform-origin: var(--half-size) var(--half-size);
+            stroke-dasharray: var(--dash) calc(var(--circumference) - var(--dash));
+            transition: stroke-dasharray 0.3s linear 0s;
+            stroke: ${this._color};
+          }
+     
+        `;
+        this.innerHTML = "";
+        this.appendChild(shadow);
+        shadow.appendChild(style);
+        shadow.appendChild(wrapper);
+        wrapper.appendChild(svg);
+        svg.appendChild(circle);
+    }
+
+    updateProgress(value){
+        this._progress = value
+        this.setAttribute("progress",this._progress)
+        this._svg.setAttribute("style",`--progress: ${this._progress}`)
+
+    }
+}
+customElements.define("pretty-progress", PrettyProgress);
